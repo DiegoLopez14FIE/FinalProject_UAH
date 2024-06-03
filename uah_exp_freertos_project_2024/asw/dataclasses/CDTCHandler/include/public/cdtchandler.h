@@ -5,9 +5,9 @@
 #include "public/basic_types.h"
 #include "public/ccsds_pus.h"
 #include "public/tmtc_dyn_mem.h"
-
+// Añadimos la opción de ejecución en el componente del guiado
 enum TTCExecCtrl {
-	ExecCtrlPrioTC, ExecCtrlReboot,ExecCtrlHK_FDIRTC,ExecCtrlBKGTC
+	ExecCtrlPrioTC, ExecCtrlReboot,ExecCtrlHK_FDIRTC,ExecCtrlBKGTC,ExecCtrlGuidanceTC
 };
 
 enum TTCAcceptationStatus {
@@ -31,13 +31,13 @@ class CDTCHandler {
 	friend class PUSService19;
 	friend class PUSService17;
 	friend class PUSService128;
-	friend class PUSService129;
+	friend class PUSService129;	// Control P
 	friend class PUSService20;
 
 	friend class PUSPrioTCExecutor;
 	friend class PUS_HK_FDIR_TCExecutor;
 	friend class PUS_BKGTCExecutor;
-	friend class PUS_GuidanceTCExecutor;
+	friend class PUS_GuidanceTCExecutor;		// Nuevo, controlador P
 
 
 	friend class CDEvAction;
@@ -132,6 +132,22 @@ protected:
 		mTCExecCtrl = ExecCtrlBKGTC;
 	}
 
+        /**
+	 
+        * \brief Set mTCExecCtrl to ExecCtrlGuidance
+	 
+        *
+	 
+        */
+
+	void SetExecCtrlAsGuidanceTC() {
+
+
+		
+                mTCExecCtrl = ExecCtrlGuidanceTC;
+	
+        }
+
 
 
 	/**
@@ -197,6 +213,10 @@ public:
 			return ExecCtrlBKGTC == mTCExecCtrl;
 	}
 
+        bool_t IsGuidanceTC() {
+			// Nueva guarda para el nuevo componente
+			return ExecCtrlGuidanceTC == mTCExecCtrl; 
+	}
 
 	/**
 	 * \brief Get APID
