@@ -90,9 +90,8 @@ void	CCGuidance::EDROOM_CTX_Top_0::FGuidanceControl()
 {
    //Define absolute time
   Pr_Time time;
-time.GetTime(); // Get current monotonic time   
-time+=Pr_Time(0,100000); // Add X sec + Y microsec    
-VNextTimeout=time;
+VNextTimeout+= Pr_Time(1,0); // Add X sec + Y microsec
+time=VNextTimeout;
 PUSService129::GuidanceControl(); //Realizamos el control cada 100ms, sin deriva alguna (timer absoluto)
    //Program absolute timer 
    GuidanceTimer.InformAt( time ); 
