@@ -195,8 +195,6 @@ void CCGuidance::EDROOM_SUB_Top_0::EDROOMBehaviour()
 			case (DoGuidance):
 				//Execute Action 
 				FGuidanceControl();
-				//Invoke Synchronous Message 
-				FInvokeTxTMList();
 				//Next State is Ready
 				edroomNextState = Ready;
 				break;
