@@ -1,0 +1,6 @@
+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
+
+cd git 
+git clone(clave https)
+Usuario 
+token privado
